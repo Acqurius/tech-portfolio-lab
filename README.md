@@ -1,2 +1,24 @@
-# tech-portfolio-lab
-tech-portfolio-lab
+# 🧠 Tech Portfolio Lab ｜技術實驗與分享空間
+
+這是我的技術實驗與知識整合作品集，涵蓋以下主題：
+
+- ⚙️ Kubernetes / Docker / KVM
+- ☁️ 雲端架構與 CI/CD 自動化
+- 🧠 AI 工具輔助開發（Copilot / ChatGPT / GPT-API）
+- 🌐 Web / Mobile / .NET Core 全端開發整合
+- 🛠️ 開源技術分享與實作
+
+## 📘 技術筆記
+
+| 主題 | 技術分類 | 連結 |
+|------|----------|------|
+
+## 💻 實作 Demo 專案
+
+| 專案名稱 | 技術堆疊 | 介紹文件 |
+|----------|----------|----------|
+
+
+## 📫 聯絡方式與更新
+- Notion 作品集展示（建置中）
+- Medium 技術筆記（建置中）
