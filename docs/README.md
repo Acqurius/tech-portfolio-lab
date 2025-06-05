@@ -17,4 +17,5 @@
 | 專案名稱 | 技術主題 | GitHub Repo | 展示狀態 |
 |----------|------------|--------------|--------------|
 | Viber coding Github Copliot vs Gitlab Duo | Python / vibe coding | [demos\VibeCoding_test](demos\VibeCoding_test) | ✅ |
+| Go Restful API simple demo | golang / Restful API  | [demos\go-rest-api](demos\go-rest-api) | ✅ |
 <!-- | GPT Code Refactor Helper | GPT-API / Python / VS Code | 🔗 | 構思中 |-->
