@@ -1,0 +1,13 @@
+<div class="weather-display">
+  <h2>Weather Information</h2>
+  <div *ngIf="weatherData">
+    <h3>{{ weatherData.city }}</h3>
+    <p>Temperature: {{ weatherData.temperature }} °C</p>
+    <p>Condition: {{ weatherData.condition }}</p>
+    <p>Humidity: {{ weatherData.humidity }}%</p>
+    <p>Wind Speed: {{ weatherData.windSpeed }} km/h</p>
+  </div>
+  <div *ngIf="!weatherData">
+    <p>Please select a city to view the weather information.</p>
+  </div>
+</div>

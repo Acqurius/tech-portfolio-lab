@@ -1,0 +1,7 @@
+<select  (change)="onCityChange($event.target.value)">
+  <option value="" disabled selected>Select a city</option>
+  <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+</select>
+  {{ selectedCity }}
+  <BR>
+  {{ cities }}

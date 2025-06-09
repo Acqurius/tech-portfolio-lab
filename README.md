@@ -16,8 +16,15 @@
 | K8s | [以RKE2建立K8S Cluster](build_cluster_by_rke2.md)|以RKE2建立K8S Cluster|2025-06-04|
 ## 💻 實作 Demo 專案
 
-| 專案名稱 | 技術堆疊 | 介紹文件 |
-|----------|----------|----------|
+
+## 💻 關聯 Demo / 示例專案
+
+| 專案名稱 | 技術主題 | GitHub Repo | 展示狀態 |
+|----------|------------|--------------|--------------|
+| Viber coding Github Copliot vs Gitlab Duo | Python / vibe coding | [demos\VibeCoding_test](demos\VibeCoding_test) | ✅ |
+| Go Restful API simple demo | golang / Restful API  | [demos\go-rest-api](demos\go-rest-api) | ✅ |
+| Angular Sample Project | Angular / nodeJS | [demos\Angular_sample ](demos\Angular_sample) | ✅ |
+<!-- | GPT Code Refactor Helper | GPT-API / Python / VS Code | 🔗 | 構思中 |-->
 
 
 <!-- 
