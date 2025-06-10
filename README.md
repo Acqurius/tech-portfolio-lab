@@ -24,6 +24,7 @@
 | Viber coding Github Copliot vs Gitlab Duo | Python / vibe coding | [demos\VibeCoding_test](demos\VibeCoding_test) | ✅ |
 | Go Restful API simple demo | golang / Restful API  | [demos\go-rest-api](demos\go-rest-api) | ✅ |
 | Angular Sample Project | Angular / nodeJS | [demos\Angular_sample ](demos\Angular_sample) | ✅ |
+| convert wav file to mp3 | python / ffmpeg | [demos\wav2mp3_py ](demos\wav2mp3_py) | ✅ |
 <!-- | GPT Code Refactor Helper | GPT-API / Python / VS Code | 🔗 | 構思中 |-->
 
 
