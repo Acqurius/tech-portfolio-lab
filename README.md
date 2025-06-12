@@ -25,6 +25,7 @@
 | Go Restful API simple demo | golang / Restful API  | [demos\go-rest-api](demos\go-rest-api) | ✅ |
 | Angular Sample Project | Angular / nodeJS | [demos\Angular_sample ](demos\Angular_sample) | ✅ |
 | convert wav file to mp3 | python / ffmpeg | [demos\wav2mp3_py ](demos\wav2mp3_py) | ✅ |
+| Pod call the script in the Node | python / shell / k8s | [demos\NodeScriptRunner ](demos\NodeScriptRunner) | ✅ |
 <!-- | GPT Code Refactor Helper | GPT-API / Python / VS Code | 🔗 | 構思中 |-->
 
 
