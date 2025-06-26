@@ -188,3 +188,73 @@ Tips for getting started:
    1     git push
 
   完成這些指令後，您的 minesweeper 專案就會成功出現在您 GitHub 的 tech-portfolio-lab 儲存庫中了。
+
+
+
+> 有什麼免費的空間可以放我這個minesweeper專案給其他人玩嗎?
+
+✦ 當然有！對於像您這樣純粹使用 HTML, CSS, 和 JavaScript 建立的「靜態網站」(Static Site)，有非常多優秀又免費的平台可以選擇。它們設定簡單，速度也很快。
+
+  以下是幾個最受歡迎且最適合您的選擇：
+
+  1. GitHub Pages (最推薦)
+
+
+  為什麼推薦？ 因為您的程式碼已經在 GitHub 上了，這是最直接、最整合的選擇。您不需要註冊任何新服務，只需要在您的儲存庫設定中點擊幾下即可。
+
+
+  如何操作：
+   1. 前往您在 GitHub 上的 tech-portfolio-lab 儲存庫。
+   2. 點擊儲存庫頁面右上方的 Settings (設定) 標籤。
+   3. 在左側選單中，點擊 Pages (頁面)。
+   4. 在 "Build and deployment" 下的 "Source" (來源) 部分，選擇 Deploy from a branch (從分支部署)。
+   5. 在 "Branch" (分支) 部分，選擇 main (或者您主要的分支，可能是 master)，資料夾選擇 /(root)，然後點擊 Save (儲存)。
+   6. 稍等一兩分鐘，GitHub 會為您建立網站。頁面頂部會出現一個綠色的提示框，裡面就有您可以公開分享的網址，格式通常是：
+      https://your-username.github.io/tech-portfolio-lab/demos/minesweeper/
+
+  2. Netlify
+
+
+  為什麼推薦？ 以其極度簡單的部署流程聞名，甚至支援直接拖曳上傳整個資料夾，而且它的免費方案非常慷慨。
+
+
+  如何操作 (Git 流程):
+   1. 前往 Netlify (https://www.netlify.com/) 網站並用您的 GitHub 帳號登入。
+   2. 授權 Netlify 存取您的 GitHub 儲存庫。
+   3. 選擇 "Add new site" -> "Import an existing project"。
+   4. 選擇您的 tech-portfolio-lab 儲存庫。
+   5. Netlify 會自動偵測設定，您通常只需要點擊 Deploy site 即可。
+   6. 幾秒鐘後，您的網站就上線了，Netlify 會提供給您一個隨機產生的網址 (例如 random-name-12345.netlify.app)。
+
+  3. Vercel
+
+
+  為什麼推薦？ 與 Netlify 非常相似，由知名的前端框架 Next.js 背後的公司建立。提供快速的全球部署網路 (CDN) 和無縫的 Git 整合。
+
+
+  如何操作：
+  流程和 Netlify 幾乎一模一樣。
+   1. 前往 Vercel (https://vercel.com/) 網站並用您的 GitHub 帳號登入。
+   2. 選擇 "Add New..." -> "Project"。
+   3. 選擇您的 tech-portfolio-lab 儲存庫並點擊 "Import"。
+   4. Vercel 會自動處理設定，點擊 Deploy 即可。
+   5. 部署完成後，您會得到一個公開的網址。
+
+  ---
+
+  總結比較
+
+
+  | 服務 (Service) | 優點 (Pros) | 適合對象 (Best for) |
+  | :--- | :--- | :--- |
+  | GitHub Pages | 與 GitHub 完美整合、完全免費、設定最簡單 | 已經在使用 GitHub 的開發者、個人專案 |
+  | Netlify | 部署極快、支援拖曳上傳、功能強大（持續部署等） | 追求最快部署流程、需要更多進階功能的使用者 |
+  | Vercel | 效能優異、全球 CDN、與前端框架整合性好 | 重視網站載入速度、未來可能使用前端框架的專案 |
+
+  我的建議是：
+
+
+  直接使用 GitHub Pages。因為它最不費力，您不需要離開 GitHub 網站就能完成所有設定。
+
+
+  如果您想嘗試，請直接按照上面 GitHub Pages 的步驟操作即可。如果您在操作中遇到任何問題，隨時可以問我！
