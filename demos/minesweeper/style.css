@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+.controls {
+    margin-bottom: 1rem;
+}
+
+.game-info {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#mines-count {
+    margin-right: 2rem;
+}
+
+.board {
+    display: grid;
+    border: 2px solid #333;
+    background-color: #c0c0c0;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #bdbdbd;
+    user-select: none; /* 防止選擇文字 */
+}
+
+.cell.revealed {
+    background-color: #e0e0e0;
+    cursor: default;
+}
+
+.cell.mine {
+    background-color: #ff0000;
+    color: white;
+}
+
+.cell.flagged {
+    background-color: #ffff00;
+}
+
+.message {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: green;
+}

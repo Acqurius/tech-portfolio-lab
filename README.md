@@ -26,6 +26,7 @@
 | Angular Sample Project | Angular / nodeJS | [demos\Angular_sample ](demos\Angular_sample) | ✅ |
 | convert wav file to mp3 | python / ffmpeg | [demos\wav2mp3_py ](demos\wav2mp3_py) | ✅ |
 | Pod call the script in the Node | python / shell / k8s | [demos\NodeScriptRunner ](demos\NodeScriptRunner) | ✅ |
+| minesweeper On Web Create By Gemini CLI | Gemini CLI / Web | [demos\minesweeper ](demos\minesweeper) | ✅ |
 <!-- | GPT Code Refactor Helper | GPT-API / Python / VS Code | 🔗 | 構思中 |-->
 
 
