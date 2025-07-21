@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>最新文章</h1>
+        {% for post in posts %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ url_for('post', post_id=post.id) }}" class="text-decoration-none">
+                            {{ post.title }}
+                        </a>
+                    </h5>
+                    <p class="card-text">{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
+                    <small class="text-muted">
+                        作者：{{ post.author }} | 發布時間：{{ post.date_posted.strftime('%Y-%m-%d %H:%M') }}
+                    </small>
+                </div>
+            </div>
+        {% else %}
+            <p>目前沒有文章，<a href="{{ url_for('create_post') }}">發表第一篇文章</a>吧！</p>
+        {% endfor %}
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>關於本站</h5>
+            </div>
+            <div class="card-body">
+                <p>歡迎來到我的 Python Flask 部落格！</p>
+                <a href="{{ url_for('create_post') }}" class="btn btn-primary">發表文章</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
