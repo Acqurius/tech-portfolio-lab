@@ -1,0 +1,16 @@
+syntax = "proto3";
+package test;
+
+service Greeter {
+  rpc SayTest (TestRequest) returns (TestReply);
+}
+
+message TestRequest {
+  string name = 1;
+  
+}
+
+message TestReply {
+  string message = 1;
+  string errorCode = 2;
+}
