@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  artifact-service:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./artifact_service.db
+      - STORAGE_TYPE=nfs
+      - NFS_BASE_PATH=/app/storage
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./storage:/app/storage
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: MinIO for S3-compatible storage
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+
+volumes:
+  minio_data:

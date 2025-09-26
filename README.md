@@ -29,6 +29,7 @@
 | minesweeper On Web Create By Gemini CLI | Gemini CLI / Web | [demos\minesweeper ](demos\minesweeper) | ✅ |
 | blog sample Create By Gitlab Dou | Gitlab Dou / Web / blog | [demos\blog ](demos\blog) | ✅ |
 | gRPC wsl sample | gRPC / python  | [demos\grpc-wsl-demo ](demos\grpc-wsl-demo) | ✅ |
+| Artifact Service | python / SQL lite  | [demos\ArtifactService ](demos\ArtifactService) | ✅ |
 <!-- | GPT Code Refactor Helper | GPT-API / Python / VS Code | 🔗 | 構思中 |-->
 
 
