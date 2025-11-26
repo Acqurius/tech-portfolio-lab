@@ -1,0 +1,418 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+      "title" : "Kubernetes File Management Service API",
+      "description" : "這是一個在 Kubernetes 中檔案管理服務，用於管理大型二進位檔案（如 firmware、OS image、driver、agent package、config bundle）。 系統的REST API，用於上傳、查詢、授權與分發檔案。\n",
+      "version" : "1.0.0"
+    },
+    "paths" : {
+      "/artifact-service/v1/artifacts/upload" : {
+        "post" : {
+          "operationId" : "uploadFile",
+          "summary" : "Upload a large binary file",
+          "requestBody" : {
+            "required" : true,
+            "content" : {
+              "multipart/form-data" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "format" : "binary"
+                    },
+                    "description" : {
+                      "type" : "string",
+                      "description" : "Description of the file"
+                    },
+                    "tags" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      },
+                      "description" : "Tags for categorizing the file"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "201" : {
+              "description" : "File uploaded successfully",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/artifact"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/artifact-service/v1/artifacts/" : {
+        "get" : {
+          "operationId" : "listFiles",
+          "summary" : "List all files with optional filters",
+          "parameters" : [ {
+            "name" : "tag",
+            "in" : "query",
+            "description" : "Filter files by tag",
+            "schema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "name",
+            "in" : "query",
+            "description" : "Filter files by name",
+            "schema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "page",
+            "in" : "query",
+            "description" : "Page number for pagination",
+            "schema" : {
+              "type" : "integer",
+              "default" : 1
+            }
+          }, {
+            "name" : "pageSize",
+            "in" : "query",
+            "description" : "Number of items per page",
+            "schema" : {
+              "type" : "integer",
+              "default" : 20
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "List of files",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "object",
+                    "properties" : {
+                      "total" : {
+                        "type" : "integer"
+                      },
+                      "files" : {
+                        "type" : "array",
+                        "items" : {
+                          "$ref" : "#/components/schemas/artifact"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/artifact-service/v1/artifacts/{uuid}" : {
+        "get" : {
+          "operationId" : "getFileMetadata",
+          "summary" : "Get metadata of a specific file",
+          "parameters" : [ {
+            "name" : "uuid",
+            "in" : "path",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "File metadata retrieved successfully",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/artifact"
+                  }
+                }
+              }
+            },
+            "404" : {
+              "description" : "File not found"
+            }
+          }
+        },
+        "delete" : {
+          "operationId" : "deleteFile",
+          "summary" : "Delete a specific file",
+          "parameters" : [ {
+            "name" : "uuid",
+            "in" : "path",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "204" : {
+              "description" : "File deleted successfully"
+            },
+            "404" : {
+              "description" : "File not found"
+            }
+          }
+        }
+      },
+      "/artifact-service/v1/artifacts/{uuid}/download" : {
+        "get" : {
+          "operationId" : "downloadFile",
+          "summary" : "Download a specific file",
+          "parameters" : [ {
+            "name" : "uuid",
+            "in" : "path",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "File download",
+              "content" : {
+                "application/octet-stream" : {
+                  "schema" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  }
+                }
+              }
+            },
+            "403" : {
+              "description" : "Access denied"
+            },
+            "404" : {
+              "description" : "File not found"
+            }
+          }
+        }
+      },
+      "/artifact-service/v1/artifacts/{uuid}/presigned-url" : {
+        "post" : {
+          "operationId" : "getPresignedUrl",
+          "summary" : "Get a presigned URL for downloading a file from S3 storage with an optional expiration time",
+          "parameters" : [ {
+            "name" : "uuid",
+            "in" : "path",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "requestBody" : {
+            "required" : true,
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "expiresIn" : {
+                      "type" : "integer",
+                      "description" : "Expiration time in seconds for the presigned URL",
+                      "default" : 3600
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Presigned URL generated successfully",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "object",
+                    "properties" : {
+                      "url" : {
+                        "type" : "string",
+                        "description" : "Presigned URL for downloading the file"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "403" : {
+              "description" : "Access denied"
+            },
+            "404" : {
+              "description" : "File not found"
+            }
+          }
+        }
+      },
+      "/artifact-service/v1/storage/usage" : {
+        "get" : {
+          "operationId" : "storageusage",
+          "summary" : "Get Storage usage",
+          "parameters" : [ ],
+          "responses" : {
+            "200" : {
+              "description" : "Usage\r\n",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "object",
+                    "properties" : {
+                      "total_bytes" : {
+                        "type" : "integer"
+                      },
+                      "used_bytes" : {
+                        "type" : "integer"
+                      },
+                      "free_bytes" : {
+                        "type" : "integer"
+                      },
+                      "usage_percent" : {
+                        "type" : "number"
+                      },
+                      "file_count" : {
+                        "type" : "integer"
+                      }
+                    },
+                    "x-examples" : {
+                      "Example 1" : {
+                        "total_bytes" : 51835101184,
+                        "used_bytes" : 8485666816,
+                        "free_bytes" : 43349434368,
+                        "usage_percent" : 16.37,
+                        "file_count" : 2
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ ]
+      }
+    },
+    "components" : {
+      "schemas" : {
+        "artifact" : {
+          "type" : "object",
+          "description" : "Metadata of a managed file",
+          "properties" : {
+            "uuid" : {
+              "type" : "string",
+              "description" : "Unique identifier of the file"
+            },
+            "name" : {
+              "type" : "string",
+              "description" : "Name of the file"
+            },
+            "description" : {
+              "type" : "string",
+              "description" : "Description of the file"
+            },
+            "originalfilename" : {
+              "type" : "string",
+              "description" : "Original name  of the file"
+            },
+            "filesize" : {
+              "type" : "integer",
+              "description" : "Size of the file in bytes"
+            },
+            "contenttype" : {
+              "type" : "string",
+              "description" : "Mime type"
+            },
+            "checksum" : {
+              "type" : "string",
+              "description" : "Checksum for file integrity verification"
+            },
+            "storagetype" : {
+              "type" : "string",
+              "description" : "type of the storage"
+            },
+            "storagepath" : {
+              "type" : "string",
+              "desciption" : "儲存體中的完整路徑"
+            },
+            "createdate" : {
+              "type" : "string",
+              "format" : "date-time",
+              "description" : "Upload timestamp"
+            },
+            "metadata" : {
+              "type" : "string",
+              "description" : "meta data for the file"
+            },
+            "tags" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              },
+              "description" : "Tags associated with the file"
+            }
+          }
+        },
+        "log" : {
+          "type" : "object",
+          "description" : "log for service operation",
+          "properties" : {
+            "id" : {
+              "type" : "integer",
+              "description" : "PK"
+            },
+            "artifactuuid" : {
+              "type" : "string",
+              "description" : "foregin key from artifact"
+            },
+            "user" : {
+              "type" : "string",
+              "description" : "the person do this operation"
+            },
+            "operation" : {
+              "type" : "string",
+              "description" : "operate action"
+            },
+            "message" : {
+              "type" : "string",
+              "description" : "detail log message"
+            },
+            "createdate" : {
+              "type" : "string",
+              "format" : "date-time",
+              "description" : "Upload timestamp"
+            }
+          }
+        }
+      },
+      "parameters" : {
+        "uuid" : {
+          "name" : "uuid",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "Artifact PK"
+        }
+      },
+      "responses" : {
+        "StorageUsage" : {
+          "description" : "Example response",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "properties" : {
+                  "id" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
